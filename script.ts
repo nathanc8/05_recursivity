@@ -1,96 +1,91 @@
 type Fichier = {
-  nom: string;
+    nom: string;
 };
 
 type Dossier = {
-  nom: string;
-  contenu: Array<Dossier | Fichier>;
+    nom: string;
+    contenu: Array<Dossier | Fichier>;
 };
 
 const dossierPrincipal: Dossier = {
-  nom: "Ada",
-  contenu: [
-    {
-      nom: "Projets collectifs Ada",
-      contenu: [
+    nom: "Ada",
+    contenu: [
         {
-          nom: "Pico8",
-          contenu: [
-            {
-              nom: "mariokart.p8",
-            },
-          ],
+            nom: "Projets collectifs Ada",
+            contenu: [
+                {
+                    nom: "Pico8",
+                    contenu: [
+                        {
+                            nom: "mariokart.p8",
+                        },
+                    ],
+                },
+                {
+                    nom: "Dataviz",
+                    contenu: [
+                        {
+                            nom: "index.html",
+                        },
+                        {
+                            nom: "script.js",
+                        },
+                    ],
+                },
+            ],
         },
+        { nom: "CV.pdf" },
         {
-          nom: "Dataviz",
-          contenu: [
-            {
-              nom: "index.html",
-            },
-            {
-              nom: "script.js",
-            },
-          ],
+            nom: "Projets persos",
+            contenu: [
+                {
+                    nom: "Portfolio",
+                    contenu: [
+                        {
+                            nom: "index.html",
+                        },
+                        {
+                            nom: "script.js",
+                        },
+                    ],
+                },
+            ],
         },
-      ],
-    },
-    { nom: "CV.pdf" },
-    {
-      nom: "Projets persos",
-      contenu: [
-        {
-          nom: "Portfolio",
-          contenu: [
-            {
-              nom: "index.html",
-            },
-            {
-              nom: "script.js",
-            },
-          ],
-        },
-      ],
-    },
-  ],
+    ],
 };
 
-const folderArray: string[] = [];
+//const folderArray: string[] = [];
 
 function recursiveFolderDisplay(folder: Dossier | Fichier) {
-  if ("contenu" in folder) {
-    folderArray.push(folder.nom);
-    for (let obj of folder.contenu) {
-      recursiveFolderDisplay(obj);
+    if ("contenu" in folder) {
+        console.log("🗂️ " + folder.nom);
+        for (let obj of folder.contenu) {
+            recursiveFolderDisplay(obj);
+        }
+    } else {
+        console.log("📑 " + folder.nom);
     }
-  } else {
-    folderArray.push(folder.nom);
-  }
 }
 
-//recursiveFolderDisplay(dossierPrincipal);
+recursiveFolderDisplay(dossierPrincipal);
 
-//console.log(folderArray);
-
-function recursiveFolderDisplay2(
-  folder: Dossier | Fichier,
-  result: Array<string>
+/* function recursiveFolderDisplay2(
+    folder: Dossier | Fichier,
+    result: Array<string>
 ) {
-  if ("contenu" in folder) {
-    result.push(folder.nom);
-    for (let obj of folder.contenu) {
-      recursiveFolderDisplay2(obj, result);
+    if ("contenu" in folder) {
+        result.push(folder.nom);
+        for (let obj of folder.contenu) {
+            recursiveFolderDisplay2(obj, result);
+        }
+    } else {
+        result.push(folder.nom);
     }
-  } else {
-    result.push(folder.nom);
-  }
-}
+} */
 
-recursiveFolderDisplay2(dossierPrincipal, []);
+//recursiveFolderDisplay2(dossierPrincipal, []);
 
 /* function recursiveFolderDisplay3(folder: Dossier, result: Array<string>) {
   if (!folder?.contenu) return [...result, folder.nom];
-  return [
-    folder?.nom,
-    ...folder?.contenu?.flatMap((obj) => recursiveFolderDisplay3(obj, result)),
-  ];
+  return [folder?.nom,...folder?.contenu?.flatMap((obj) => recursiveFolderDisplay3(obj, result)),];
 } */

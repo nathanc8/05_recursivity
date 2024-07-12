@@ -44,18 +44,35 @@ var dossierPrincipal = {
         },
     ],
 };
-var folderArray = [];
+//const folderArray: string[] = [];
 function recursiveFolderDisplay(folder) {
     if ("contenu" in folder) {
-        folderArray.push(folder.nom);
+        console.log("🗂️ " + folder.nom);
         for (var _i = 0, _a = folder.contenu; _i < _a.length; _i++) {
             var obj = _a[_i];
             recursiveFolderDisplay(obj);
         }
     }
     else {
-        folderArray.push(folder.nom);
+        console.log("📑 " + folder.nom);
     }
 }
 recursiveFolderDisplay(dossierPrincipal);
-console.log(folderArray);
+/* function recursiveFolderDisplay2(
+    folder: Dossier | Fichier,
+    result: Array<string>
+) {
+    if ("contenu" in folder) {
+        result.push(folder.nom);
+        for (let obj of folder.contenu) {
+            recursiveFolderDisplay2(obj, result);
+        }
+    } else {
+        result.push(folder.nom);
+    }
+} */
+//recursiveFolderDisplay2(dossierPrincipal, []);
+/* function recursiveFolderDisplay3(folder: Dossier, result: Array<string>) {
+  if (!folder?.contenu) return [...result, folder.nom];
+  return [folder?.nom,...folder?.contenu?.flatMap((obj) => recursiveFolderDisplay3(obj, result)),];
+} */
